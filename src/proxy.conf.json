@@ -1,0 +1,8 @@
+{
+    "/backend/*": {
+        "target": "https://www.blibli.com",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

@@ -1,0 +1,60 @@
+<div
+  appInfiniteScroll
+  *ngIf="products.length; else noProducts"
+  class="product-list-wrapper"
+  #scrollContainer
+  (onScrollEnd)="onScroll()"
+  (showScrollToTopButton)="showScrollToTopButton = $event"
+>
+  <div class="product-list-container">
+    <div class="search-results-container">
+      <div class="search-results-text">
+        Showing search results for <b>{{ searchValue }}</b>
+      </div>
+      <div class="products-view-options">
+        <span
+          class="material-icons-round"
+          [ngClass]="{ selected: selectedView === 'grid' }"
+          (click)="selectedView = 'grid'"
+        >
+          grid_view
+        </span>
+        <span
+          class="material-icons-round"
+          [ngClass]="{ selected: selectedView === 'list' }"
+          (click)="selectedView = 'list'"
+        >
+          view_list
+        </span>
+      </div>
+    </div>
+    <div class="products-container {{ selectedView }}">
+      <div class="product-wrapper" *ngFor="let product of products">
+        <app-product [product]="product" [view]="selectedView"></app-product>
+      </div>
+    </div>
+    <div *ngIf="isProductsAvailable" class="loader"></div>
+  </div>
+  <div
+    *ngIf="showScrollToTopButton"
+    (click)="scrollToTop()"
+    class="back-to-top-button"
+  >
+    <span class="material-icons-outlined"> expand_less </span>
+  </div>
+</div>
+<ng-template #noProducts>
+  <div class="loading-container" *ngIf="isLoading">
+    <div class="loader"></div>
+  </div>
+  <ng-container *ngIf="!isLoading">
+    <app-error
+      [type]="searchValue ? 'error' : 'warning'"
+      [message]="
+        searchValue
+          ? 'Sorry no products found !!!'
+          : 'Please enter a search text to view the results !!!'
+      "
+    ></app-error>
+  </ng-container>
+</ng-template>

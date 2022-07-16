@@ -1,0 +1,29 @@
+<div class="header-wrapper">
+  <div class="header-container">
+    <div class="header-title">Products</div>
+    <div class="search-container">
+      <span class="material-icons-outlined search-icon"> search </span>
+      <input
+        #searchInput
+        class="search-input"
+        type="text"
+        [(ngModel)]="searchValue"
+        placeholder="Enter your search text"
+      />
+      <span
+        *ngIf="searchValue"
+        (click)="onSearchClear()"
+        class="material-icons-outlined close-icon"
+      >
+        close
+      </span>
+    </div>
+    <div class="cart-icon-container" (click)="openOverlay(cart)">
+      <span class="material-icons-outlined">shopping_cart</span>
+      <span class="cart-count"> {{ cartCount$ | async }} </span>
+    </div>
+  </div>
+</div>
+<ng-template #cart>
+  <app-cart></app-cart>
+</ng-template>

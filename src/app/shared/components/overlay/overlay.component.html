@@ -1,0 +1,13 @@
+<ng-container *ngIf="isOpen$ | async">
+  <div class="overlay-mask" (click)="closeOverlay()"></div>
+  <div class="overlay-content {{ overlayPosition$ | async }}">
+    <div class="close-icon-container">
+      <span class="material-icons-outlined close-icon" (click)="closeOverlay()">
+        close
+      </span>
+    </div>
+    <div class="content-wrapper">
+      <ng-container *ngTemplateOutlet="template$ | async"> </ng-container>
+    </div>
+  </div>
+</ng-container>
