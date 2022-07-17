@@ -21,17 +21,14 @@ export class SearchService {
     page: number = 0,
     start: number = 0
   ): Observable<SearchResponse> {
-    return this.http.get<SearchResponse>(
-      `${environment.apiUrl}/backend/search/products`,
-      {
-        params: {
-          searchTerm,
-          page,
-          start,
-          itemPerPage: 30,
-        },
-      }
-    );
+    return this.http.get<SearchResponse>('/backend/search/products', {
+      params: {
+        searchTerm,
+        page,
+        start,
+        itemPerPage: 30,
+      },
+    });
   }
 
   getSearchValue(): string {
