@@ -1,1 +1,2 @@
 /backend/*  https://www.blibli.com/backend/:splat  200!
+/*    /index.html   200
