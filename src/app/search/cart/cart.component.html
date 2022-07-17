@@ -1,6 +1,11 @@
 <div class="cart-container">
   <div class="cart-title">Cart</div>
-  <div class="products-container" *ngFor="let product of cartItems$ | async">
-    <app-product [product]="product" view="cart"></app-product>
-  </div>
+  <ng-container *ngIf="(cartItems$ | async)?.length">
+    <div class="products-container" *ngFor="let product of cartItems$ | async">
+      <app-product [product]="product" view="cart"></app-product>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!(cartItems$ | async)?.length">
+    <app-error type="error" message="Your cart is empty !!!"></app-error>
+  </ng-container>
 </div>
