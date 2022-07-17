@@ -14,8 +14,9 @@
 }
 
 .overlay-content {
-  display: block;
   position: fixed;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 400px;
   background-color: #ffffff;
@@ -37,18 +38,16 @@
   }
 
   &.center {
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-    height: max-content;
+    left: 50%;
+    transform: translateX(-50%);
     max-height: 80%;
     border-radius: 10px;
+    top: 20%;
   }
 }
 
 .content-wrapper {
-  height: calc(100% - 34px);
+  flex: 1;
   overflow: auto;
 }
 
